@@ -1,108 +1,137 @@
 
 import { useState } from 'react';
-import list from '../../data.js';
 import ProjectList from '../ProjectList/ProjectList.jsx';
 import Toolbar from '../Toolbar/Toolbar.jsx';
 
-const Portfolio = (props) => {
+const list = [{
+    id: 1 ,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/mon.jpg",
+    category: "Business Cards"
+  },
+   {
+    id: 2,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/200.jpg",
+    category: "Websites"
+  },
+   {
+    id: 3,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/emi_haze.jpg",
+    category: "Websites"
+  }, 
+  {
+    id: 4,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/codystretch.jpg",
+    category: "Websites"
+  },
+   {
+    id: 5,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_003.jpg",
+    category: "Business Cards"
+  }, 
+  {
+    id: 6,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290.png",
+    category: "Websites"
+  },
+   {
+    id: 7,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/200.jpg",
+    category: "Websites"
+  },
+   {
+    id: 8,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/transmission.jpg",
+    category: "Business Cards"
+  }, 
+  {
+    id: 9,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_1.png",
+    category: "Websites"
+  },
+   {
+    id: 10,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_2.png",
+    category: "Flayers"
+  },
+   {
+    id: 11,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/the_ninetys_brand.jpg",
+    category: "Websites"
+  },
+   {
+    id: 12,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/dia.jpg",
+    category: "Business Cards"
+  },
+   {
+    id: 13,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_350x197.jpg",
+    category: "Websites"
+  },
+   {
+    id: 14,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/emi_haze.jpg",
+    category: "Websites"
+  },
+   {
+    id: 15,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/transmission.jpg",
+    category: "Business Cards"
+  },
+   {
+    id: 16,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_350x197_1.jpg",
+    category: "Websites"
+  },
+   {
+    id: 17,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_3.png",
+    category: "Flayers"
+  }];
+
+const filters = ["All", "Websites", "Flayers", "Business Cards"];
+
+const cardObject =[
+  {
+    id: 16,
+    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_350x197_1.jpg",
+    category: "Websites"
+  },
+  {
+  id: 17,
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_3.png",
+  category: "Flayers"
+}] 
+
+const Portfolio = () => {
     // Функция состояния для фильтров:
-    const [filter, setFilter]= useState();
-    // Функция состояния для карточек:
-    const [card, setCard] = useState();
+    const [filterState, setFilter]= useState(list);
 
-    // Формируем список для отображения :
-
-    // Функция , формирующая элементы списка для отрисовки:
-    function blockCard(card) {
-        return (
-            <div className='block'>       
-                <img className='image' src={card.img} key={card.id}/>
-                <div className='category'>{card.category}</div>
-            </div> 
-        )             
-    }
-
-     // ФИЛЬТРЫ : 
-
-    //  All:
-
-    const cardList = list.map ( card =>
-        blockCard(card)    
-    )
-
-    // // Фильтр "Websites"
-
-    // const websites = list.filter( card =>
-    //     card.category === "Websites"      
-    // );
-
-    // const cardList = websites.map ( card =>
-    //     blockCard(card)    
-    // )
-
-    // // Фильтр "Flayers" 
-
-    //     const flayers = list.filter( card =>
-    //         card.category === "Flayers"      
-    //     )
-
-    //     const cardList = flayers.map ( card =>
-    //         blockCard(card)    
-    //     )
-
-
-    // // Фильтр "Business Cards" 
-
-    // const businessCards = list.filter( card =>
-    //     card.category === "Business Cards"      
-    // );
-
-    // const cardList = businessCards.map ( card =>
-    //     blockCard(card)    
-    // )
-
-// ***********************************************
+    console.log ('Текущее значение фильтра -', filterState)
     
-    // Oбработчики нажатия на кнопки:
-    
-    const handlerAll =()=> {
-        console.log ('button-all')
-        
+    const onSelectFilter = (filter) => {
+  
+      if (filter === 'All') {
+        setFilter(list)
+      } else {
+        setFilter ( 
+          list.filter( card => 
+            card.category === `${filter}`     
+          )
+        )
+      }
     }
-
-    const handlerWebsites =()=> {
-        console.log ('button-websites');
  
-    }
-
-    const handlerFlayers =()=> {
-        console.log ('button-flayes')
-    }
-
-    const handlerBusinessCards =()=> {
-        console.log ('button-business-casrs')
-    }
-
-
-    return (
-        // Прорисовываем кнопки 
+    return (   
         <>
-        <div className='menu'>
-            <button className='button-all' onClick={handlerAll}>All</button>
-            <button className='button-websites' onClick={handlerWebsites}>Websites</button>
-            <button className='button-flayes' onClick={handlerFlayers}>Flayers</button>
-            <button className='button-business-casrs' onClick={handlerBusinessCards}>Business Cards</button>            
-        </div>
-
         <Toolbar
-            filters={["All", "Websites", "Flayers", "Business Cards"]}
+            filters={filters}
             selected="All" 
-            onSelectFilter={(filter) => {console.log(filter);}}/>
+            onSelectFilter={onSelectFilter}/>
 
-         < ProjectList projects = {cardList}/>
+         < ProjectList projects = {filterState}/>
 
         </>
-
     )
 }
 
