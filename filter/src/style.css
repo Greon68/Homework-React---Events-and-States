@@ -25,12 +25,15 @@
     color: rgb(237, 26, 26);
 }
 
-
-
-
 .filter-button{
     display:flex;
     justify-content: center;
    
     list-style: none
+}
+
+.active {
+    background-color: rgb(170, 253, 221);
+    color: rgb(237, 26, 26);
+    
 }

@@ -90,35 +90,27 @@ const list = [{
   }];
 
 const filters = ["All", "Websites", "Flayers", "Business Cards"];
-
-const cardObject =[
-  {
-    id: 16,
-    img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_350x197_1.jpg",
-    category: "Websites"
-  },
-  {
-  id: 17,
-  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_3.png",
-  category: "Flayers"
-}] 
-
+ 
 const Portfolio = () => {
     // Функция состояния для фильтров:
     const [filterState, setFilter]= useState(list);
+    const [selected, setSelected]= useState('All')
 
     console.log ('Текущее значение фильтра -', filterState)
     
     const onSelectFilter = (filter) => {
   
       if (filter === 'All') {
-        setFilter(list)
+        setFilter(list);
+        setSelected('All')
+
       } else {
         setFilter ( 
           list.filter( card => 
             card.category === `${filter}`     
           )
-        )
+        );
+        setSelected(`${filter}`)
       }
     }
  
@@ -126,11 +118,9 @@ const Portfolio = () => {
         <>
         <Toolbar
             filters={filters}
-            selected="All" 
+            selected={selected }
             onSelectFilter={onSelectFilter}/>
-
          < ProjectList projects = {filterState}/>
-
         </>
     )
 }

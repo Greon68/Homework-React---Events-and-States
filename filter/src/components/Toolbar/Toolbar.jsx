@@ -1,4 +1,5 @@
 const Toolbar = ({filters, selected , onSelectFilter}) => {
+    console.log('Выбрана и передана в Toolbar категория -', selected)
       
     const onBattonClick = (e) => {
       const selectButton = e.target.innerHTML;
@@ -15,7 +16,7 @@ const Toolbar = ({filters, selected , onSelectFilter}) => {
 
             {filters.map( (filter) =>
               <li key={filter}> 
-                  <button 
+                  <button className={selected === filter ? 'active': ""}
                     onClick= {onBattonClick}>
                         {filter}
                   </button> 
