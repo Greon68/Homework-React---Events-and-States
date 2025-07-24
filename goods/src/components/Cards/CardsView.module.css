@@ -11,14 +11,17 @@
 .block {
     position: relative;
     width: 30%;
+    height: 600px;
     margin-bottom: 20px;
     box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+
 }
 
 .image {
     /* position: absolute; */
     max-width: 100%;
+    height: 100%;
    
 }
 
@@ -27,17 +30,19 @@
 .price,
 .button {
     position: absolute;
+    font-size: 40px;
 }
 
 .name {    
     top: 6%;
     left: 30%;
+    font-size: 60px;
 }
 
 .color {
-    top: 16%; 
+    top: 22%; 
     left:45%;
-    font-size: smaller;
+    
 }
 
 .price {
@@ -49,10 +54,11 @@
 
 .button {
     width: fit-content;
-    font-size: 10px;
+    font-size: 30px;
     color: red; 
     top: 85%;
     left: 50%;
     border-color: red;
     border-radius: 20px;
+    cursor: pointer;
 }

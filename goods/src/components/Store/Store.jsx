@@ -1,3 +1,9 @@
+import { useState } from 'react'
+import { CardsView } from '../Cards/CardsView'
+import { ListView } from '../List/ListView'
+import {  FaThList,FaThLarge } from 'react-icons/fa';
+import S from './Store.module.css'
+
 const products = [{
     id: 1,
     name: "Nike Metcon 2",
@@ -36,4 +42,28 @@ const products = [{
     img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/layouts/img/5.jpg"
   }];
 
-  export default products
+export const Store =()=> {
+    const [state, setState]= useState(false)
+
+    const handleClickIcons = ()=> {
+        setState(!state);
+        console.log(state);
+    }
+
+    return ( 
+
+        <div className={S.container}>
+
+            <div className={S.boxIcone}>
+                <div 
+                    className={S.icone}
+                    onClick={handleClickIcons}> 
+                    { state ? <FaThLarge style={{fontSize: '90px'}}/> : <FaThList style={{fontSize: '90px'}}/>}
+                </div>
+            </div >  
+
+            { state ? <CardsView products={products}/> : <ListView products={products}/>}
+
+        </div>
+    )
+}
